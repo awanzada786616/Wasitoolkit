@@ -18,6 +18,18 @@
       --shadow:0 10px 25px rgba(0,0,0,.25);
       --radius:22px;
     }
+
+    /* Light theme variables */
+    body.light {
+      --bg:#f5f7fa;
+      --card:#ffffff;
+      --cardHover:#e2e6f0;
+      --text:#111;
+      --glass:rgba(255,255,255,.65);
+      --ring:rgba(0,0,0,.25);
+      --shadow:0 10px 25px rgba(0,0,0,.15);
+    }
+
     *{box-sizing:border-box}
     html,body{height:100%}
     body{
@@ -29,8 +41,8 @@
       display:flex;
       flex-direction:column;
       min-height:100%;
+      transition: all 0.4s ease;
     }
-    /* overlay glass effect */
     body::before{
       content:"";
       position:fixed; inset:0;
@@ -38,16 +50,23 @@
       backdrop-filter: blur(6px) saturate(120%);
       -webkit-backdrop-filter: blur(6px) saturate(120%);
       z-index:0;
+      transition: background 0.4s ease;
+    }
+    body.light::before{
+      background:rgba(255,255,255,0.35);
     }
     .wrap{
       position:relative;
       flex:1;
-      z-index:1; /* keep content above overlay */
+      z-index:1;
       display:flex;
       flex-direction:column;
     }
     header{
       padding:28px 20px 8px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
     }
     .title{
       display:flex; align-items:center; gap:14px;
@@ -66,6 +85,16 @@
       border:1px solid var(--ring);
       box-shadow:var(--shadow);
     }
+    .toggle-btn{
+      background:var(--glass);
+      border:1px solid var(--ring);
+      border-radius:50%;
+      width:40px; height:40px;
+      display:grid; place-items:center;
+      font-size:18px; cursor:pointer;
+      box-shadow:var(--shadow);
+      transition: all .3s ease;
+    }
     .grid{
       display:grid;
       gap:16px;
@@ -82,11 +111,24 @@
       text-decoration:none;
       box-shadow:var(--shadow);
       border:1px solid rgba(255,255,255,.08);
-      transition: transform .15s ease, box-shadow .15s ease, opacity .2s ease;
+      transition: transform .25s ease, box-shadow .25s ease, opacity .2s ease;
       will-change:transform;
+      position:relative;
+      overflow:hidden;
     }
-    .card:hover{ transform:translateY(-2px); box-shadow:0 16px 32px rgba(0,0,0,.35); }
-    .card:active{ transform:translateY(0); }
+    .card::after{
+      content:"";
+      position:absolute;
+      top:0; left:-100%;
+      width:100%; height:100%;
+      background:rgba(255,255,255,.2);
+      transition: left 0.4s ease;
+    }
+    .card:hover::after{
+      left:100%;
+    }
+    .card:hover{ transform:translateY(-5px) scale(1.02); box-shadow:0 20px 40px rgba(0,0,0,.35); }
+    .card:active{ transform:scale(0.98); }
     .card .left{ display:flex; align-items:center; gap:12px; min-width:0; }
     .icon{
       width:42px; height:42px; border-radius:12px;
@@ -99,24 +141,10 @@
       white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
     }
     .chev{ font-size:18px; opacity:.9; }
-    /* Non-click / disabled tiles */
-    .card.disabled{
-      cursor:not-allowed;
-      opacity:.7;
-      background:linear-gradient(180deg,#4c6fff,#3a57cc);
-      outline:2px dashed rgba(255,255,255,.35);
-      outline-offset:-6px;
-    }
-    .sub{
-      font-size:12px; opacity:.9; margin-top:2px;
-    }
     footer{
       padding:12px 20px 28px;
       opacity:.85; font-size:13px;
       text-align:center;
-    }
-    @media (prefers-reduced-motion: reduce){
-      .card,.card:hover,.card:active{ transition:none }
     }
   </style>
 </head>
@@ -127,11 +155,10 @@
         <h1>Awan Data Base</h1>
         <span class="badge">Dashboard</span>
       </div>
+      <div class="toggle-btn" id="themeToggle">🌙</div>
     </header>
 
     <main class="grid" aria-label="Tools">
-      <!-- Ownership (non-click) -->
-      <!-- Zong Data -> TikTok -->
       <a class="card" href="https://shadowpaksim.xyz/shadowzongshadowprivate.php" target="_blank" rel="noopener">
         <div class="left">
           <div class="icon">🗂️</div>
@@ -140,7 +167,6 @@
         <div class="chev">↗</div>
       </a>
 
-      <!-- Jazz Data -> TikTok -->
       <a class="card" href="https://shadowpaksim.xyz/shadowjazzshadowprivate.php" target="_blank" rel="noopener">
         <div class="left">
           <div class="icon">📊</div>
@@ -149,7 +175,6 @@
         <div class="chev">↗</div>
       </a>
 
-      <!-- Telenor Data -> TikTok -->
       <a class="card" href="https://shadowpaksim.xyz/telenorshadowprivate.php" target="_blank" rel="noopener">
         <div class="left">
           <div class="icon">📁</div>
@@ -157,22 +182,15 @@
         </div>
         <div class="chev">↗</div>
       </a>
-<a class="card" href="https://shadowpaksim.xyz/shadowufoneshadowprivate.php" target="_blank" rel="noopener">
+
+      <a class="card" href="https://shadowpaksim.xyz/shadowufoneshadowprivate.php" target="_blank" rel="noopener">
         <div class="left">
           <div class="icon">📊</div>
           <div class="label">Ufone data</div>
         </div>
         <div class="chev">↗</div>
-</a>
-      <!-- Ufone Data -> TikTok -->
-      
-      <a class="card" href="https://www.mediafire.com/folder/80pvhfn6lmqny/WhatsApp+Hack+with+using+termux" target="_blank" rel="noopener">
-        <div class="left">
-          <div class="icon">💀</div>
-          <div class="label">Whatsapp hack</div>
-        </div>
-        <div class="chev">↗</div>
       </a>
+
       <a class="card" href="https://wasi-song-playbax.vercel.app/" target="_blank" rel="noopener">
         <div class="left">
           <div class="icon">▶️</div>
@@ -180,7 +198,6 @@
         </div>
         <div class="chev">↗</div>
       </a>
-      </div>
     </main>
 
     <footer>
@@ -188,8 +205,27 @@
     </footer>
   </div>
 
+  <!-- Sound Effect -->
+  <audio id="clickSound" src="https://www.soundjay.com/buttons/sounds/button-16.mp3" preload="auto"></audio>
+
   <script>
     document.getElementById('yr').textContent = new Date().getFullYear();
+
+    // Theme toggle
+    const toggleBtn = document.getElementById('themeToggle');
+    toggleBtn.addEventListener('click', () => {
+      document.body.classList.toggle('light');
+      toggleBtn.textContent = document.body.classList.contains('light') ? "🌞" : "🌙";
+    });
+
+    // Click sound on tools
+    const sound = document.getElementById('clickSound');
+    document.querySelectorAll('.card').forEach(card => {
+      card.addEventListener('click', () => {
+        sound.currentTime = 0;
+        sound.play();
+      });
+    });
   </script>
 </body>
 </html>
