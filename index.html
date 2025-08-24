@@ -1,121 +1,205 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Login</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: white;
-      color: #333;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-      overflow: hidden;
-    }
-
-    .login-container {
-      background: #f5f5f5;
-      padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0 0 25px rgba(0, 0, 0, 0.1);
-      text-align: center;
-      width: 320px;
-      position: relative;
-    }
-
-    h2 {
-      color: #FF6347;
-    }
-
-    input {
-      width: 100%;
-      padding: 12px;
-      margin: 12px 0;
-      border-radius: 5px;
-      border: 1px solid #ccc;
-      background: #fafafa;
-      color: #333;
-    }
-
-    .btn {
-      width: 100%;
-      padding: 14px;
-      border-radius: 5px;
-      border: none;
-      font-size: 16px;
-      cursor: pointer;
-    }
-
-    .btn.login {
-      background: #FF6347;
-      color: white;
-    }
-
-    .btn.get-userpass {
-      background: #4CAF50;
-      color: white;
-      margin-top: 10px;
-    }
-
-    .popup {
-      margin-top: 15px;
-      padding: 12px;
-      border-radius: 8px;
-      font-weight: bold;
-      display: none;
-    }
-
-    .popup.success {
-      background-color: #e0ffe0;
-      color: #2d8a2d;
-      display: block;
-    }
-
-    .popup.error {
-      background-color: #ffe0e0;
-      color: #d12d2d;
-      display: block;
-    }
-  </style>
-</head>
-<body>
-  <div class="login-container">
-    <h2>🔐 Login</h2>
-    <form id="loginForm">
-      <input type="text" id="username" placeholder="Username" required />
-      <input type="password" id="password" placeholder="Password" required />
-      <button type="submit" class="btn login">Login</button>
-    </form>
-
-    <button onclick="window.location.href='idpass.html'" class="btn get-userpass">GET USERNAME PASS</button>
-
-    <div id="popup" class="popup"></div>
-  </div>
-
-  <script>
-    const form = document.getElementById('loginForm');
-    const popup = document.getElementById('popup');
-
-    form.addEventListener('submit', function(event) {
-      event.preventDefault();
-      const username = document.getElementById('username').value.trim();
-      const password = document.getElementById('password').value.trim();
-
-      if (username === 'Shani' && password === 'Wasi') {
-        popup.textContent = '✅ Login successful!';
-        popup.className = 'popup success';
-        setTimeout(() => {
-          window.location.href = 'dashboard.html'; // Redirect after success
-        }, 1500);
-      } else {
-        popup.textContent = '❌ Wrong ID or Password!';
-        popup.className = 'popup error';
-      }
-    });
-  </script>
-</body>
-</html>
+‎<!DOCTYPE html>
+‎<html lang="en">
+‎<head>
+‎  <meta charset="UTF-8" />
+‎  <meta name="viewport" content="width=device-width, initial-scale=1" />
+‎  <title>Login — King Data</title>
+‎  <link rel="preconnect" href="https://fonts.googleapis.com">
+‎  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+‎  <style>
+‎    :root{
+‎      --bg: #0b1020;
+‎      --card: rgba(255,255,255,0.1);
+‎      --border: rgba(255,255,255,0.18);
+‎      --text: #eaf2ff;
+‎      --muted:#b8c3d6;
+‎      --accent:#4ade80;
+‎      --danger:#f87171;
+‎      --shadow: 0 10px 30px rgba(0,0,0,.35);
+‎    }
+‎    *{box-sizing:border-box}
+‎    html,body{height:100%}
+‎    body{
+‎      margin:0;
+‎      font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+‎      color: var(--text);
+‎      background: var(--bg) url("https://i.postimg.cc/sXm4JxJ4/images-2-12.jpg") center/cover no-repeat fixed;
+‎      display:grid;
+‎      place-items:center;
+‎    }
+‎    /* overlay for readability */
+‎    .overlay{
+‎      position: fixed; inset:0;
+‎      background: radial-gradient(1200px 800px at 70% 20%, rgba(11,16,32,.15), rgba(11,16,32,.85));
+‎      pointer-events:none;
+‎    }
+‎    .card{
+‎      width:min(92vw, 420px);
+‎      background: var(--card);
+‎      backdrop-filter: blur(14px);
+‎      -webkit-backdrop-filter: blur(14px);
+‎      border:1px solid var(--border);
+‎      border-radius: 20px;
+‎      box-shadow: var(--shadow);
+‎      padding: 26px;
+‎      position: relative;
+‎      overflow:hidden;
+‎    }
+‎    .card::before{
+‎      content:"";
+‎      position:absolute; inset:-2px;
+‎      background: conic-gradient(from 180deg at 50% 50%, #4ade80, #60a5fa, #a78bfa, #4ade80);
+‎      filter: blur(24px); opacity:.18; z-index:0;
+‎    }
+‎    .header{ position:relative; z-index:1; text-align:center; margin-bottom: 18px;}
+‎    .header h1{
+‎      margin:0 0 6px; font-size: 1.6rem; letter-spacing:.2px; font-weight:700;
+‎    }
+‎    .header p{margin:0; color: var(--muted); font-size:.95rem}
+‎    form{ position:relative; z-index:1; display:grid; gap:14px; }
+‎    label{ font-size:.9rem; color: var(--muted); display:block; margin-bottom:6px}
+‎    .field{
+‎      display:flex; align-items:center; gap:10px;
+‎      background: rgba(12,16,30,.6);
+‎      border:1px solid rgba(255,255,255,.14);
+‎      border-radius: 12px; padding: 12px 14px;
+‎      transition: border .2s ease, transform .05s ease;
+‎    }
+‎    .field:focus-within{ border-color:#86efac; transform: translateY(-1px);}
+‎    .field input{
+‎      flex:1; background:transparent; border:0; outline:0; color:var(--text); font-size:1rem;
+‎    }
+‎    .actions{
+‎      display:flex; align-items:center; justify-content:space-between; gap:12px;
+‎      margin-top:6px;
+‎    }
+‎    .checkbox{ display:flex; gap:10px; align-items:center; color:var(--muted); font-size:.9rem }
+‎    .checkbox input{ width:18px; height:18px; }
+‎    .btn{
+‎      appearance:none; border:0; outline:0; cursor:pointer;
+‎      padding:12px 16px; border-radius:12px; font-weight:700; font-size:1rem;
+‎      background: linear-gradient(90deg, #22c55e, #16a34a);
+‎      color:#07120a; box-shadow: 0 8px 18px rgba(34,197,94,.35);
+‎      transition: transform .06s ease, filter .2s ease;
+‎    }
+‎    .btn:hover{ filter: brightness(1.05) }
+‎    .btn:active{ transform: translateY(1px) }
+‎    .toggle-eye{
+‎      user-select:none; cursor:pointer; opacity:.9;
+‎      font-size:.95rem; color:var(--muted);
+‎    }
+‎    .hint, .error{
+‎      font-size:.9rem; margin-top:6px; min-height:1.2em;
+‎    }
+‎    .hint{ color: var(--muted) }
+‎    .error{ color: var(--danger); }
+‎    .caps{ display:none; color:#fbbf24; font-size:.85rem }
+‎    .footer{ margin-top:14px; text-align:center; color:var(--muted); font-size:.85rem }
+‎    a, a:visited{ color:#a7f3d0; text-decoration:none }
+‎  </style>
+‎</head>
+‎<body>
+‎  <div class="overlay" aria-hidden="true"></div>
+‎
+‎  <main class="card" role="main" aria-labelledby="title">
+‎    <div class="header">
+‎      <h1 id="title">Welcome back</h1>
+‎      <p>Please sign in to continue</p>
+‎    </div>
+‎
+‎    <form id="loginForm" autocomplete="off" novalidate>
+‎      <div>
+‎        <label for="username">Username</label>
+‎        <div class="field">
+‎          <input id="username" name="username" type="text" inputmode="text" placeholder="Enter username" required />
+‎        </div>
+‎      </div>
+‎
+‎      <div>
+‎        <label for="password">Password</label>
+‎        <div class="field">
+‎          <input id="password" name="password" type="password" placeholder="Enter password" required />
+‎          <span class="toggle-eye" id="togglePwd" title="Show/Hide password">👁️</span>
+‎        </div>
+‎        <div class="caps" id="capsNotice">Caps Lock is ON</div>
+‎      </div>
+‎
+‎      <div class="actions">
+‎        <label class="checkbox">
+‎          <input type="checkbox" id="remember" /> Remember me
+‎        </label>
+‎        <button class="btn" type="submit">Sign in</button>
+‎      </div>
+‎
+‎      <div class="error" id="error" role="alert" aria-live="polite"></div>
+‎      <div class="hint">Hint: username <code>kingdata</code> &middot; password <code>Malik101</code></div>
+‎    </form>
+‎
+‎    <div class="footer">
+‎      © <span id="year"></span> King Data. All rights reserved.
+‎    </div>
+‎  </main>
+‎
+‎  <script>
+‎    (function () {
+‎      const VALID_USER = "kingdata";
+‎      const VALID_PASS = "Malik101";
+‎      const form = document.getElementById("loginForm");
+‎      const user = document.getElementById("username");
+‎      const pass = document.getElementById("password");
+‎      const errorBox = document.getElementById("error");
+‎      const togglePwd = document.getElementById("togglePwd");
+‎      const capsNotice = document.getElementById("capsNotice");
+‎      const remember = document.getElementById("remember");
+‎      const year = document.getElementById("year");
+‎
+‎      year.textContent = new Date().getFullYear();
+‎
+‎      // show/hide password
+‎      togglePwd.addEventListener("click", () => {
+‎        pass.type = pass.type === "password" ? "text" : "password";
+‎      });
+‎
+‎      // caps lock detector
+‎      pass.addEventListener("keyup", (e) => {
+‎        const caps = e.getModifierState && e.getModifierState("CapsLock");
+‎        capsNotice.style.display = caps ? "block" : "none";
+‎      });
+‎
+‎      // simple enter key UX
+‎      [user, pass].forEach(el => el.addEventListener("keydown", (e) => {
+‎        if (e.key === "Enter") form.requestSubmit();
+‎      }));
+‎
+‎      // restore remembered username
+‎      const savedUser = localStorage.getItem("kd_username");
+‎      if (savedUser) user.value = savedUser;
+‎
+‎      form.addEventListener("submit", (e) => {
+‎        e.preventDefault();
+‎        const u = (user.value || "").trim();
+‎        const p = pass.value || "";
+‎
+‎        if (!u || !p) {
+‎          errorBox.textContent = "Please fill in both fields.";
+‎          return;
+‎        }
+‎
+‎        if (u === VALID_USER && p === VALID_PASS) {
+‎          errorBox.textContent = "";
+‎          if (remember.checked) {
+‎            localStorage.setItem("kd_username", u);
+‎          } else {
+‎            localStorage.removeItem("kd_username");
+‎          }
+‎          // redirect to dashboard
+‎          window.location.href = "dashboard.html";
+‎        } else {
+‎          errorBox.textContent = "Invalid username or password.";
+‎        }
+‎      });
+‎    })();
+‎  </script>
+‎</body>
+‎</html>
+‎
