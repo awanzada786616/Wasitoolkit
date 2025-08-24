@@ -1,177 +1,213 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>EhsanXtools</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-  font-family: Arial, sans-serif;
-  background: #000;
-  overflow-y: auto; /* changed from hidden */
-  color: #fff;
-  min-height: 100vh;
-}
-
-html {
-  overflow-y: auto; /* ensure scrolling is allowed */
-}
-
-    canvas {
-      position: fixed;
-      top: 0;
-      left: 0;
-      z-index: -1;
-    }
-
-    .container {
-      max-width: 450px;
-      margin: 70px auto;
-      background: rgba(0, 0, 0, 0.85);
-      border: 2px solid #00ffe7;
-      border-radius: 18px;
-      padding: 30px 25px;
-      box-shadow: 0 0 50px #00ffe7;
-      text-align: center;
-      animation: fadeIn 1s ease-out;
-    }
-
-    @keyframes fadeIn {
-      0% {
-        transform: translateY(-40px);
-        opacity: 0;
-      }
-      100% {
-        transform: translateY(0);
-        opacity: 1;
-      }
-    }
-
-    h1 {
-      color: #00ffe7;
-      font-size: 32px;
-      text-shadow: 0 0 10px #00ffe7, 0 0 20px #00ffe7;
-      margin-bottom: 10px;
-    }
-
-    .subtitle {
-      font-size: 15px;
-      color: #ccc;
-      margin-bottom: 25px;
-    }
-
-    .btn {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 100%;
-      margin: 10px 0;
-      padding: 14px 20px;
-      border: 2px solid #00ffe7;
-      background: transparent;
-      color: #00ffe7;
-      border-radius: 12px;
-      font-size: 17px;
-      font-weight: bold;
-      cursor: pointer;
-      text-decoration: none;
-      transition: all 0.3s ease;
-      box-shadow: 0 0 10px transparent;
-    }
-
-    .btn:hover {
-      background: #00ffe7;
-      color: #000;
-      transform: scale(1.05);
-      box-shadow: 0 0 25px #00ffe7;
-    }
-
-    .btn i {
-      margin-right: 10px;
-      font-size: 18px;
-    }
-
-    .footer {
-      text-align: center;
-      font-size: 12px;
-      color: #666;
-      margin-top: 25px;
-    }
-  </style>
-
-  <!-- Font Awesome for Icons -->
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-</head>
-<body>
-
-<canvas id="bg"></canvas>
-
-<div class="container">
-  <h1>💻 Shani</h1>
-  <div class="subtitle">Welcome to the Awais X Shani Toolkit</div>
-
-  <a href="Xsim.html" class="btn"><i class="fas fa-database"></i> Sim Database 1</a>
-  <a href="https://www.mediafire.com/file/z17798g6s7wnwqu/SIM_DATABASE_2025_WORKING_APK.apk/file" class="btn"><i class="fas fa-id-card"></i> Sim database Bot</a>
-  <a href="https://chat.whatsapp.com/JapQVWuffXH5FhqL5hrDWP" class="btn"><i class="fas fa-globe"></i> Whatsapp Channel</a>
-  <a href="XlinkXLocker.html" class="btn"><i class="fas fa-lock"></i> Link Locker</a>
-  <a href="XtcsXtracker.html" class="btn"><i class="fas fa-shipping-fast"></i> TCS Tracker</a>
-  <a href="https://pakprovider.site" class="btn"><i class="fas fa-phone"></i> Smm-Panel</a>
-  <a href="https://youtu.be/mUpQa_uBV2o?si=Iag0hG3YEGBIMkZN" class="btn"><i class="fas fa-globe"></i> +48 Fake Number WA</a>
-  <a href="https://youtu.be/YJWYrKe4hco?si=IuyVWbjLo9dPorS1" class="btn"><i class="fas fa-lock"></i> Make Own Simdatabase Web</a>
-  <a href="XnetflixXfree.html" class="btn"><i class="fas fa-shipping-fast"></i> Free Netflix</a>
-  <a href="https://youtu.be/Chxhu6SyXoA?si=zqhVG5LyIAdF8aXl" class="btn"><i class="fas fa-phone"></i> Whatsapp UnBan</a>
-  <a href="XpromptToImage.html" class="btn"><i class="fas fa-phone"></i> Prompt To Image</a>
-  <a href="XcheapXHosting.html" class="btn"><i class="fas fa-phone"></i> Cheap Web Hosting</a>
-  
-  <div class="footer">
-    &copy; 2025 - Powered by Pro x Wasi x shani mods 🔥
-  </div>
-</div>
-
-<!-- Background Animation Script -->
-<script>
-  const canvas = document.getElementById("bg");
-  const ctx = canvas.getContext("2d");
-
-  canvas.height = window.innerHeight;
-  canvas.width = window.innerWidth;
-
-  const matrix = "01";
-  const fontSize = 16;
-  const columns = canvas.width / fontSize;
-  const drops = Array.from({ length: columns }).fill(1);
-
-  function draw() {
-    ctx.fillStyle = "rgba(0, 0, 0, 0.07)";
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-    ctx.fillStyle = "#00ffe7";
-    ctx.font = ${fontSize}px monospace;
-
-    for (let i = 0; i < drops.length; i++) {
-      const text = matrix[Math.floor(Math.random() * matrix.length)];
-      ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-
-      if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-        drops[i] = 0;
-      }
-      drops[i]++;
-    }
-  }
-
-  setInterval(draw, 35);
-
-  window.addEventListener('resize', () => {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-  });
-</script>
-
-</body>
-</html>
+‎<!DOCTYPE html>
+‎<html lang="en">
+‎<head>
+‎  <meta charset="UTF-8" />
+‎  <meta name="viewport" content="width=device-width, initial-scale=1" />
+‎  <title>Awan Data Base — Dashboard</title>
+‎  <meta name="color-scheme" content="light dark" />
+‎  <style>
+‎    :root{
+‎      --bg:url('https://i.postimg.cc/sXm4JxJ4/images-2-12.jpg');
+‎      --card:#176BFF;            /* blue tiles */
+‎      --cardHover:#0f56cc;
+‎      --text:#ffffff;            /* white text */
+‎      --glass:rgba(0,0,0,.35);   /* overlay */
+‎      --ring:rgba(255,255,255,.45);
+‎      --shadow:0 10px 25px rgba(0,0,0,.25);
+‎      --radius:22px;
+‎    }
+‎    *{box-sizing:border-box}
+‎    html,body{height:100%}
+‎    body{
+‎      margin:0;
+‎      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+‎      color:var(--text);
+‎      background: center/cover no-repeat var(--bg), #0b1220;
+‎      position:relative;
+‎    }
+‎    /* dim & blur for readability */
+‎    body::before{
+‎      content:"";
+‎      position:fixed; inset:0;
+‎      background:linear-gradient( to bottom, rgba(0,0,0,.55), rgba(0,0,0,.65) );
+‎      backdrop-filter:saturate(120%) blur(1px);
+‎      pointer-events:none;
+‎    }
+‎
+‎    .wrap{
+‎      position:relative;
+‎      min-height:100%;
+‎      display:flex;
+‎      flex-direction:column;
+‎    }
+‎    header{
+‎      padding:28px 20px 8px;
+‎    }
+‎    .title{
+‎      display:flex; align-items:center; gap:14px;
+‎    }
+‎    .title h1{
+‎      margin:0;
+‎      font-size:clamp(24px, 3.5vw, 42px);
+‎      letter-spacing:.5px;
+‎      text-shadow:0 4px 18px rgba(0,0,0,.55);
+‎    }
+‎    .badge{
+‎      font-size:12px;
+‎      padding:6px 10px;
+‎      border-radius:999px;
+‎      background:var(--glass);
+‎      border:1px solid var(--ring);
+‎      box-shadow:var(--shadow);
+‎    }
+‎    .grid{
+‎      display:grid;
+‎      gap:16px;
+‎      padding:18px 20px 36px;
+‎      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+‎      align-items:stretch;
+‎    }
+‎    .card{
+‎      display:flex; align-items:center; justify-content:space-between; gap:12px;
+‎      padding:18px 18px;
+‎      border-radius:var(--radius);
+‎      background:linear-gradient(180deg, var(--card), var(--cardHover));
+‎      color:var(--text);
+‎      text-decoration:none;
+‎      box-shadow:var(--shadow);
+‎      border:1px solid rgba(255,255,255,.08);
+‎      transition: transform .15s ease, box-shadow .15s ease, opacity .2s ease;
+‎      will-change:transform;
+‎    }
+‎    .card:hover{ transform:translateY(-2px); box-shadow:0 16px 32px rgba(0,0,0,.35); }
+‎    .card:active{ transform:translateY(0); }
+‎    .card .left{ display:flex; align-items:center; gap:12px; min-width:0; }
+‎    .icon{
+‎      width:42px; height:42px; border-radius:12px;
+‎      background:rgba(255,255,255,.15);
+‎      display:grid; place-items:center; font-size:22px;
+‎      border:1px solid rgba(255,255,255,.25);
+‎    }
+‎    .label{
+‎      font-weight:700; letter-spacing:.3px; font-size:16px;
+‎      white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+‎    }
+‎    .chev{ font-size:18px; opacity:.9; }
+‎
+‎    /* Non-click / disabled tiles */
+‎    .card.disabled{
+‎      cursor:not-allowed;
+‎      opacity:.7;
+‎      background:linear-gradient(180deg, #4c6fff, #3a57cc);
+‎      outline:2px dashed rgba(255,255,255,.35);
+‎      outline-offset:-6px;
+‎    }
+‎    .sub{
+‎      font-size:12px; opacity:.9; margin-top:2px;
+‎    }
+‎
+‎    footer{
+‎      padding:12px 20px 28px;
+‎      opacity:.85; font-size:13px;
+‎    }
+‎
+‎    @media (prefers-reduced-motion: reduce){
+‎      .card,.card:hover,.card:active{ transition:none }
+‎    }
+‎  </style>
+‎</head>
+‎<body>
+‎  <div class="wrap">
+‎    <header>
+‎      <div class="title">
+‎        <h1>Awan Data Base</h1>
+‎        <span class="badge">Dashboard</span>
+‎      </div>
+‎    </header>
+‎
+‎    <main class="grid" aria-label="Tools">
+‎      <!-- Ownership (non-click) -->
+‎      <div class="card disabled" title="Info-only">
+‎        <div class="left">
+‎          <div class="icon">🏷️</div>
+‎          <div>
+‎            <div class="label">Ownership</div>
+‎            <div class="sub">Owner: Awan • Read-only</div>
+‎          </div>
+‎        </div>
+‎        <div class="chev">ℹ️</div>
+‎      </div>
+‎
+‎      <!-- Zong Data -> TikTok -->
+‎      <a class="card" href="https://www.tiktok.com/" target="_blank" rel="noopener">
+‎        <div class="left">
+‎          <div class="icon">🗂️</div>
+‎          <div class="label">Zong Data</div>
+‎        </div>
+‎        <div class="chev">↗</div>
+‎      </a>
+‎
+‎      <!-- Jazz Data -> TikTok -->
+‎      <a class="card" href="https://www.tiktok.com/" target="_blank" rel="noopener">
+‎        <div class="left">
+‎          <div class="icon">📊</div>
+‎          <div class="label">Jazz Data</div>
+‎        </div>
+‎        <div class="chev">↗</div>
+‎      </a>
+‎
+‎      <!-- Telenor Data -> TikTok -->
+‎      <a class="card" href="https://www.tiktok.com/" target="_blank" rel="noopener">
+‎        <div class="left">
+‎          <div class="icon">📁</div>
+‎          <div class="label">Telenor Data</div>
+‎        </div>
+‎        <div class="chev">↗</div>
+‎      </a>
+‎
+‎      <!-- Ufone Data -> TikTok -->
+‎      <a class="card" href="https://www.tiktok.com/" target="_blank" rel="noopener">
+‎        <div class="left">
+‎          <div class="icon">🗄️</div>
+‎          <div class="label">Ufone Data</div>
+‎        </div>
+‎        <div class="chev">↗</div>
+‎      </a>
+‎
+‎      <!-- Ethical placeholder for SMS tool (disabled) -->
+‎      <div class="card disabled" title="Not provided: SMS bombing is abusive and not supported. Ask for a legitimate SMS test UI instead.">
+‎        <div class="left">
+‎          <div class="icon">📨</div>
+‎          <div>
+‎            <div class="label">SMS Tool (disabled)</div>
+‎            <div class="sub">We don’t support abuse/spam</div>
+‎          </div>
+‎        </div>
+‎        <div class="chev">🚫</div>
+‎      </div>
+‎
+‎      <!-- Ethical placeholder for card design (disabled) -->
+‎      <div class="card disabled" title="Not provided: ‘fake card maker’ enables fraud. Ask for a mock card DESIGN tool for legal use.">
+‎        <div class="left">
+‎          <div class="icon">💳</div>
+‎          <div>
+‎            <div class="label">Card Designer (disabled)</div>
+‎            <div class="sub">Fraud-related tools not supported</div>
+‎          </div>
+‎        </div>
+‎        <div class="chev">🚫</div>
+‎      </div>
+‎    </main>
+‎
+‎    <footer>
+‎      © <span id="yr"></span> Awan. All rights reserved.
+‎    </footer>
+‎  </div>
+‎
+‎  <script>
+‎    // year
+‎    document.getElementById('yr').textContent = new Date().getFullYear();
+‎  </script>
+‎</body>
+‎</html>
+‎
